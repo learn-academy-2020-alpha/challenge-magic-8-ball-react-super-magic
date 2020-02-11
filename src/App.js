@@ -6,7 +6,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       // Add magic 8 ball outcomes to the array
-      answerArray: [],
+      answerArray: ["No", "Yes", "Maybe", "Hmmmmm", ".....Sorry", "Absolutely!", "Not looking too bright...", "Ask Again", "That is a rad idea!"],
       question: ""
     }
   }
@@ -15,9 +15,37 @@ class App extends React.Component {
     // destructures answerArray out of state
     const { answerArray } = this.state
     // write your code here!
+    let quest = this.state.question
+    if(!(quest.includes('?'))){ //&& quest.charAt(quest.length-1)==="?"){
+        alert("Make sure you include a question mark and that its at the end")
+    } else{
+    let randomAnswer = Math.floor(Math.random() * 9)
+    switch(randomAnswer) {
+        case 0: return answerArray[0]
+        break;
+        case 1: return answerArray[1]
+        break;
+        case 2: return answerArray[2]
+        break;
+        case 3: return answerArray[3]
+        break;
+        case 4: return answerArray[4]
+        break;
+        case 5: return answerArray[5]
+        break;
+        case 6: return answerArray[6]
+        break;
+        case 7: return answerArray[7]
+        break;
+        case 8: return answerArray[8]
+        break;
+    }
+ }
+}
+
     // Update the return statement below to reflect the outcome of your code.
-    return this.state.question
-  }
+    // return this.state.question
+
 
   handleChange = (e) => {
     // gets the event from the input on change and updates state
@@ -42,10 +70,10 @@ class App extends React.Component {
           onChange={ this.handleChange }
         />
         <br />
-        <button onClick={ this.handleSubmit }>
+        <button className = "buttonStyle"onClick={ this.handleSubmit }>
           Ask the Magic 8 Ball a Question
         </button>
-        <p> { this.state.answer } </p>
+        <p className = "box"> { this.state.answer } </p>
       </div>
     )
   }
